@@ -1,25 +1,44 @@
 import { supabase } from "../api/supabaseClient";
 
 export const signIn = async (email: string, password: string) => {
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) throw new Error(error.message);
+  const res = await fetch("/api/v1/auth/signin", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.error);
+  }
 };
 
 export const signUp = async (email: string, password: string) => {
-  const { error } = await supabase.auth.signUp({ email, password });
-  if (error) throw new Error(error.message);
+  const res = await fetch("/api/v1/auth/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.error);
+  }
 };
 
-export const checkSession = async () => {
-  const { data } = await supabase.auth.getSession();
-  return data?.session;
+export const getSession = async () => {
+  const res = await fetch("/api/v1/auth/session");
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.error);
+  }
+  return await res.json();
 };
 
+// Listen for auth state changes
 export const onAuthStateChange = (
   callback: (event: string, session: any) => void
 ) => {
   const { data: authListener } = supabase.auth.onAuthStateChange(callback);
-  return () => {
-    authListener?.subscription.unsubscribe();
-  };
+  return () => authListener?.subscription.unsubscribe();
 };
