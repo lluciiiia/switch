@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import LoginForm from "./LoginForm";
 import AuthLayout from "../components/AuthLayout";
-import { signIn, checkSession, onAuthStateChange } from "../controllers/auth";
+import { signIn, getSession, onAuthStateChange } from "../controllers/auth";
 
 export default function Auth() {
   const router = useRouter();
@@ -11,7 +11,7 @@ export default function Auth() {
 
   useEffect(() => {
     const checkUserSession = async () => {
-      const session = await checkSession();
+      const session = await getSession();
       if (session) router.push("/dashboard");
     };
     checkUserSession();
