@@ -10,7 +10,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleSubmit, error }) => {
   return (
     <div className="w-full max-w-md mx-auto">
       <h2 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#F8AB5E] to-[#F36961] mb-6">
-        Medea
+        Switch
       </h2>
       <p className="text-lg font-medium text-gray-700 mb-6">
         Nice to see you again
