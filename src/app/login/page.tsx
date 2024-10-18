@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import LoginForm from "./LoginForm";
-import AuthLayout from "../components/AuthLayout";
+import AuthLayout from "../components/Auth/AuthLayout";
 import { signIn, getSession, onAuthStateChange } from "../controllers/auth";
 
 export default function Auth() {
