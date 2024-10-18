@@ -27,12 +27,8 @@ export const signUp = async (email: string, password: string) => {
 };
 
 export const getSession = async () => {
-  const res = await fetch("/api/v1/auth/session");
-  if (!res.ok) {
-    const error = await res.json();
-    throw new Error(error.error);
-  }
-  return await res.json();
+  const { data } = await supabase.auth.getSession();
+  return data?.session;
 };
 
 // Listen for auth state changes

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { signIn, signUp, checkSession } from "./service";
+import { signIn, signUp } from "./service";
 
 export default async function handler(
   req: NextApiRequest,
@@ -19,11 +19,6 @@ export default async function handler(
         const { email: signupEmail, password: signupPassword } = req.body;
         await signUp(signupEmail, signupPassword);
         res.status(200).json({ message: "Signed up successfully" });
-        break;
-
-      case "session":
-        const session = await checkSession();
-        res.status(200).json({ session });
         break;
 
       default:

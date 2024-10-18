@@ -11,9 +11,3 @@ export const signUp = async (email: string, password: string) => {
   const { error } = await supabase.auth.signUp({ email, password });
   if (error) throw new Error(error.message);
 };
-
-// Get session
-export const checkSession = async () => {
-  const { data } = await supabase.auth.getSession();
-  return data?.session;
-};
