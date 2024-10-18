@@ -1,0 +1,16 @@
+{
+    "departments": [
+        "Billing",
+        "Public Works",
+        "City Clerk",
+        "Law Enforcement",
+        "General Inquiries"
+    ],
+    "default_department": "General Inquiries",
+    "keyword_rules": {
+        "Billing": ["bill", "payment", "charge", "fee", "invoice"],
+        "Public Works": ["road", "street", "pothole", "sidewalk", "traffic", "light"],
+        "City Clerk": ["meeting", "council", "vote", "election", "record"],
+        "Law Enforcement": ["crime", "police", "noise", "complaint", "emergency"]
+    }
+}
