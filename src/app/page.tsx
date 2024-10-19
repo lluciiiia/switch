@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
 import NavigationBar from './components/ui/navbar'; 
-import InquiryPage from './components/Inquiry/page'
+import InquiryPage from './inquiries/page'
 
 const PageWithTabs = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
