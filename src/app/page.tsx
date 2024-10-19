@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
-import NavigationBar from "./components/ui/navbar";
 import InquiryPage from "./components/Inquiry/page";
 import SideLeft from "./components/SideLeft/SideLeft";
 import DashboardLayout from "./components/Dashboard/DashboardLayout";
+import NavigationBar from './components/ui/navbar'; 
 
 const PageWithTabs = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
