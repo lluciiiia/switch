@@ -1,31 +1,35 @@
 "use client";
-import { useEffect, useState } from "react";
-import { getInquiries } from "./controllers/inquiries";
-import InquiryList from "./components/Inquiry/InquiryList";
-import NavigationBar from "../app/components/ui/navbar"
+import { useState } from 'react';
+import NavigationBar from './components/ui/navbar'; 
+import InquiryPage from './components/Inquiry/page'
 
-const InquiryPage = () => {
-  const [inquiries, setInquiries] = useState([]);
+const PageWithTabs = () => {
+  const [activeTab, setActiveTab] = useState('dashboard');
 
-  useEffect(() => {
-    getInquiries().then((data) => {
-      setInquiries(data);
-    });
-  }, []);
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'dashboard':
+        return <div>Dashboard Content</div>;
+      case 'inquiries':
+        return <InquiryPage />;
+      case 'messages':
+        return <div>Messages Content</div>;
+      case 'tasks':
+        return <div>Tasks Content</div>;
+      default:
+        return null;
+    }
+  };
 
   return (
-    <div>
-      {inquiries ? (
-        <>
-          <h1>Omnichannel Inquiries</h1>
-          <InquiryList inquiries={inquiries} />
-        </>
-      ) : (
-        <NavigationBar />
-      )}
-
-    </div>
+    <>
+      {/* Pass activeTab and setActiveTab to the NavigationBar */}
+      <NavigationBar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <div className="p-6">
+        {renderContent()}
+      </div>
+    </>
   );
 };
 
-export default InquiryPage;
+export default PageWithTabs;

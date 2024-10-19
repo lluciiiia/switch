@@ -1,36 +1,24 @@
-"use client"; // This marks the component as a client component
+"use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 
 interface NavItem {
   label: string;
   value: string;
 }
 
-const NavigationBar: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('dashboard'); // Default active tab
+interface NavigationBarProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+}
 
+const NavigationBar: React.FC<NavigationBarProps> = ({ activeTab, setActiveTab }) => {
   const navItems: NavItem[] = [
     { label: 'Dashboard', value: 'dashboard' },
     { label: 'Inquiries', value: 'inquiries' },
     { label: 'Messages', value: 'messages' },
     { label: 'Tasks', value: 'tasks' },
   ];
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'dashboard':
-        return <div>Dashboard Content</div>;
-      case 'inquiries':
-        return <div>Inquiries Content</div>;
-      case 'messages':
-        return <div>Messages Content</div>;
-      case 'tasks':
-        return <div>Tasks Content</div>;
-      default:
-        return null;
-    }
-  };
 
   return (
     <div className="w-full">
@@ -55,9 +43,6 @@ const NavigationBar: React.FC = () => {
           ))}
         </div>
       </nav>
-
-      {/* Content based on the active tab */}
-      <div className="p-6">{renderContent()}</div>
     </div>
   );
 };
