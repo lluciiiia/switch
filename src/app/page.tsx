@@ -3,6 +3,7 @@ import { useState } from "react";
 import NavigationBar from "./components/ui/navbar";
 import InquiryPage from "./components/Inquiry/page";
 import SideLeft from "./components/SideLeft/SideLeft";
+import DashboardLayout from "./components/Dashboard/DashboardLayout";
 
 const PageWithTabs = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -10,7 +11,7 @@ const PageWithTabs = () => {
   const renderContent = () => {
     switch (activeTab) {
       case "dashboard":
-        return <div>Dashboard Content</div>;
+        return <DashboardLayout />;
       case "inquiries":
         return <InquiryPage />;
       case "messages":
@@ -30,7 +31,7 @@ const PageWithTabs = () => {
       </div>
       <div className="col-span-4 bg-white p-10">
         <NavigationBar activeTab={activeTab} setActiveTab={setActiveTab} />
-        <div className="p-6">{renderContent()}</div>
+        <div>{renderContent()}</div>
       </div>
     </div>
   );
