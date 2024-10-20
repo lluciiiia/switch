@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import InquiryCard from "./InquiryCard";
-import InquiryList from "./InquiryList";
+import { getInquiries } from "../controllers/inquiries";
+import InquiryCard from "../components/Inquiry/InquiryCard";
+import InquiryList from "../components/Inquiry/InquiryList";
 
 interface Inquiry {
     profile: string;
@@ -102,7 +103,7 @@ const InquiryPage = () => {
           icon: 'check',
         },
       ];
-
+      
 
     return (
         <div>
