@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from twilio.twiml.voice_response import VoiceResponse
 import openai_helper
 import twilio_helper
@@ -11,7 +12,7 @@ import urllib.request
 
 # Initialize Flask App
 app = Flask(__name__)
-
+CORS(app)
 # Placeholder for storing conversation history
 conversation_history = []
 
@@ -30,32 +31,32 @@ def handle_call():
 
 @app.route("/process-speech", methods=["POST"])
 def process_speech():
-    # recording_url = request.form.get('RecordingUrl')
+    recording_url = request.form.get('RecordingUrl')
     
-    # transcribed_text = openai_helper.transcribe_audio(recording_url)
-    # conversation_history.append(transcribed_text)
-    # ai_reply = openai_helper.get_gpt_response(transcribed_text)
+    transcribed_text = openai_helper.transcribe_audio(recording_url)
+    conversation_history.append(transcribed_text)
+    ai_reply = openai_helper.get_gpt_response(transcribed_text)
     
-    # response = VoiceResponse()
-    # response.say(ai_reply)
+    response = VoiceResponse()
+    response.say(ai_reply)
     
-    # if twilio_helper.is_transfer_required(transcribed_text):
-    #     summary = openai_helper.generate_summary(conversation_history)
-    #     twilio_helper.notify_agent(summary)
-    #     response.say("Transferring you to a customer service representative.")
-    #     response.dial("+6590754739")
-    try:
-        transcribed_text = openai_helper.transcribe_audio()
-        ai_reply = openai_helper.get_gpt_response(transcribed_text)
+    if twilio_helper.is_transfer_required(transcribed_text):
+        summary = openai_helper.generate_summary(conversation_history)
+        twilio_helper.notify_agent(summary)
+        response.say("Transferring you to a customer service representative.")
+        response.dial("+6590754739")
+    # try:
+    #     transcribed_text = openai_helper.transcribe_audio()
+    #     ai_reply = openai_helper.get_gpt_response(transcribed_text)
 
-        return jsonify({
-            "transcription": transcribed_text,
-            "ai_response": ai_reply
-        }), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    #     return jsonify({
+    #         "transcription": transcribed_text,
+    #         "ai_response": ai_reply
+    #     }), 200
+    # except Exception as e:
+    #     return jsonify({"error": str(e)}), 500
     
-    return str(response)
+    # return str(response)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=5000, debug=True)
