@@ -1,4 +1,14 @@
-export const users = [
+interface userRow {
+  name: string;
+  avatar: string;
+  title: string;
+  contact: string;
+  checkin: string;
+  checkout: string;
+  roomNumber: number;
+}
+
+export const users: userRow[] = [
   {
     name: "SeoKyung Kim",
     avatar: "https://via.placeholder.com/40",
@@ -55,6 +65,7 @@ export const users = [
   },
   {
     name: "Tony Stark",
+    avatar: "https://via.placeholder.com/40",
     title: "CEO",
     contact: "+84 92 4567890",
     checkin: "October 19, 2024, 3:00 PM",
@@ -63,6 +74,7 @@ export const users = [
   },
   {
     name: "Natasha",
+    avatar: "https://via.placeholder.com/40",
     title: "Project Manager",
     contact: "+84 99 6549870",
     checkin: "October 18, 2024, 7:00 PM",
@@ -86,5 +98,23 @@ export const users = [
     checkin: "October 16, 2024, 9:00 PM",
     checkout: "October 28, 2024, 7:00 AM",
     roomNumber: 110,
+  },
+  {
+    name: "Bruce Wayne",
+    avatar: "https://via.placeholder.com/40",
+    title: "Finance Director",
+    contact: "+84 94 3456789",
+    checkin: "October 17, 2024, 8:00 PM",
+    checkout: "October 29, 2024, 8:00 AM",
+    roomNumber: 111,
+  },
+  {
+    name: "Clark Kent",
+    avatar: "https://via.placeholder.com/40",
+    title: "Journalist",
+    contact: "+84 95 1239876",
+    checkin: "October 16, 2024, 9:00 PM",
+    checkout: "October 28, 2024, 7:00 AM",
+    roomNumber: 112,
   },
 ];

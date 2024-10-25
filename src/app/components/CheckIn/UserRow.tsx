@@ -1,5 +1,6 @@
 interface userRow {
   name: string;
+  avatar: string;
   title: string;
   contact: string;
   checkin: string;
@@ -12,7 +13,11 @@ const UserRow = ({ user }: { user: userRow }) => {
     <tr className="border-b-2">
       <td className="px-6 py-4 w-[250px]">
         <div className="flex items-center gap-4">
-          <div className="h-10 w-10 rounded-full bg-gray-300"></div>
+          <img
+            src={user.avatar}
+            alt={user.name}
+            className="w-10 h-10 rounded-full"
+          />
           <div className="text-start">
             <p className="font-medium">{user.name}</p>
             <p className="text-gray-500 text-xs">{user.title}</p>
