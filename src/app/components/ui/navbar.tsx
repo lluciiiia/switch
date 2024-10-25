@@ -25,9 +25,9 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   ];
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-4">
       {/* Navigation Bar */}
-      <nav className="flex justify-between items-center py-2 bg-[#F5F5F5] border-b border-gray-200">
+      <nav className="flex justify-between items-center bg-[#F5F5F5] border-b border-gray-200">
         <div className="flex justify-start space-x-10 w-full p-5">
           {navItems.map((item) => (
             <button
@@ -41,7 +41,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             >
               {item.label}
               {activeTab === item.value && (
-                <span className="absolute right-0 top-14 h-0.5 bg-gray-500 w-full" />
+                <span className="absolute right-0 top-12 h-0.5 bg-gray-500 w-full" />
               )}
             </button>
           ))}
