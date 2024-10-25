@@ -21,12 +21,13 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
     { label: "Inquiries", value: "inquiries" },
     { label: "Messages", value: "messages" },
     { label: "Tasks", value: "tasks" },
+    { label: "Check-in/out", value: "checkin" },
   ];
 
   return (
     <div className="w-full">
       {/* Navigation Bar */}
-      <nav className="flex justify-between items-center py-2 bg-white border-b border-gray-200">
+      <nav className="flex justify-between items-center py-2 bg-[#F5F5F5] border-b border-gray-200">
         <div className="flex justify-start space-x-10 w-full p-5">
           {navItems.map((item) => (
             <button
