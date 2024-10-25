@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { employees } from "../../data/tasksData";
 import TaskPopup from "./TaskPopup";

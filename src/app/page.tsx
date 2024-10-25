@@ -2,11 +2,11 @@
 import { useState } from "react";
 import InquiryPage from "./components/Inquiry/page";
 import SideLeft from "./components/SideLeft/SideLeft";
-import DashboardLayout from "./components/Dashboard/DashboardLayout";
 import NavigationBar from "./components/ui/navbar";
 import Checkin from "./components/CheckIn/page";
 import Messages from "./components/Messages/page";
 import TaskHandover from "./components/Tasks/page";
+import DashboardLayout from "./components/Dashboard/page";
 
 const PageWithTabs = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
