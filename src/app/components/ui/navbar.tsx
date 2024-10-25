@@ -25,15 +25,15 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   ];
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-4">
       {/* Navigation Bar */}
-      <nav className="flex justify-between items-center py-2 bg-[#F5F5F5] border-b border-gray-200">
+      <nav className="flex justify-between items-center bg-[#F5F5F5] border-b border-gray-200">
         <div className="flex justify-start space-x-10 w-full p-5">
           {navItems.map((item) => (
             <button
               key={item.value}
               onClick={() => setActiveTab(item.value)}
-              className={`relative text-lg font-medium transition-colors ${
+              className={`relative text-lg font-medium transition-colors w-28 ${
                 activeTab === item.value
                   ? "text-gray-800"
                   : "text-gray-400 hover:text-gray-600"
@@ -41,7 +41,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             >
               {item.label}
               {activeTab === item.value && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-500 w-full" />
+                <span className="absolute right-0 top-12 h-0.5 bg-gray-500 w-full" />
               )}
             </button>
           ))}

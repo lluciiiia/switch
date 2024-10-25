@@ -5,6 +5,7 @@ import SideLeft from "./components/SideLeft/SideLeft";
 import DashboardLayout from "./components/Dashboard/DashboardLayout";
 import NavigationBar from "./components/ui/navbar";
 import Checkin from "./components/CheckIn/page";
+import Messages from "./components/Messages/page";
 
 const PageWithTabs = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -16,7 +17,7 @@ const PageWithTabs = () => {
       case "inquiries":
         return <InquiryPage />;
       case "messages":
-        return <div>Messages Content</div>;
+        return <Messages />;
       case "tasks":
         return <div>Tasks Content</div>;
       case "checkin":
@@ -32,7 +33,7 @@ const PageWithTabs = () => {
       <div className="col-span-1">
         <SideLeft />
       </div>
-      <div className="col-span-4 bg-[#F5F5F5] p-10">
+      <div className="col-span-4 bg-[#F5F5F5] px-10">
         <NavigationBar activeTab={activeTab} setActiveTab={setActiveTab} />
         <div>{renderContent()}</div>
       </div>
