@@ -33,7 +33,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             <button
               key={item.value}
               onClick={() => setActiveTab(item.value)}
-              className={`relative text-lg font-medium transition-colors ${
+              className={`relative text-lg font-medium transition-colors w-28 ${
                 activeTab === item.value
                   ? "text-gray-800"
                   : "text-gray-400 hover:text-gray-600"
@@ -41,7 +41,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             >
               {item.label}
               {activeTab === item.value && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-500 w-full" />
+                <span className="absolute right-0 top-14 h-0.5 bg-gray-500 w-full" />
               )}
             </button>
           ))}
