@@ -1,6 +1,7 @@
 export const users = [
   {
     name: "SeoKyung Kim",
+    avatar: "https://via.placeholder.com/40",
     title: "Business Invester",
     contact: "+84 96 4904800",
     checkin: "October 25, 2024, 3:00 PM",
@@ -9,6 +10,7 @@ export const users = [
   },
   {
     name: "John Doe",
+    avatar: "https://via.placeholder.com/40",
     title: "Software Engineer",
     contact: "+84 93 1234567",
     checkin: "October 24, 2024, 2:00 PM",
@@ -17,6 +19,7 @@ export const users = [
   },
   {
     name: "Jane Smith",
+    avatar: "https://via.placeholder.com/40",
     title: "Marketing Manager",
     contact: "+84 91 6543210",
     checkin: "October 23, 2024, 1:00 PM",
@@ -25,6 +28,7 @@ export const users = [
   },
   {
     name: "David Lee",
+    avatar: "https://via.placeholder.com/40",
     title: "Data Scientist",
     contact: "+84 97 8765432",
     checkin: "October 22, 2024, 4:00 PM",
@@ -33,6 +37,7 @@ export const users = [
   },
   {
     name: "Anna Wong",
+    avatar: "https://via.placeholder.com/40",
     title: "HR Manager",
     contact: "+84 98 7654321",
     checkin: "October 21, 2024, 5:00 PM",
@@ -41,6 +46,7 @@ export const users = [
   },
   {
     name: "Peter Parker",
+    avatar: "https://via.placeholder.com/40",
     title: "Web Developer",
     contact: "+84 90 9876543",
     checkin: "October 20, 2024, 6:00 PM",
@@ -65,6 +71,7 @@ export const users = [
   },
   {
     name: "Bruce Wayne",
+    avatar: "https://via.placeholder.com/40",
     title: "Finance Director",
     contact: "+84 94 3456789",
     checkin: "October 17, 2024, 8:00 PM",
@@ -73,6 +80,7 @@ export const users = [
   },
   {
     name: "Clark Kent",
+    avatar: "https://via.placeholder.com/40",
     title: "Journalist",
     contact: "+84 95 1239876",
     checkin: "October 16, 2024, 9:00 PM",

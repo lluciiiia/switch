@@ -4,6 +4,7 @@ import React from "react";
 interface Contact {
   name: string;
   role: string;
+  avatar?: string;
 }
 
 interface ContactListProps {
@@ -33,14 +34,18 @@ const ContactList: React.FC<ContactListProps> = ({
               className="flex justify-between items-center mb-8 cursor-pointer"
               onClick={() => onSelectContact(contact)}
             >
-              <div className="flex items-center text-sm">
-                <div className="rounded-full bg-gray-200 w-12 h-12 mr-3"></div>
+              <div className="flex items-center text-sm gap-3">
+                <img
+                  src={contact.avatar}
+                  alt={contact.name}
+                  className="w-10 h-10 rounded-full"
+                />
                 <div>
                   <p className="font-medium">{contact.name}</p>
                   <p className="text-gray-500">{contact.role}</p>
                 </div>
               </div>
-              <button className="px-4 py-2 bg-teal-500 text-white rounded-md text-sm">
+              <button className="px-4 py-2 border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white rounded-full text-sm">
                 Contact
               </button>
             </div>
