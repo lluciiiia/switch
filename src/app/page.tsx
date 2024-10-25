@@ -6,6 +6,7 @@ import NavigationBar from "./components/ui/navbar";
 import Checkin from "./components/CheckIn/page";
 import Messages from "./components/Messages/page";
 import TaskHandover from "./components/Tasks/page";
+import DashboardLayout from "./components/Dashboard/page";
 
 const PageWithTabs = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
