@@ -2,8 +2,12 @@
 import { useState } from "react";
 import InquiryPage from "./components/Inquiry/page";
 import SideLeft from "./components/SideLeft/SideLeft";
-import DashboardLayout from "./components/Dashboard/DashboardLayout";
-import NavigationBar from './components/ui/navbar'; 
+import NavigationBar from "./components/ui/navbar";
+import Checkin from "./components/CheckIn/page";
+import Messages from "./components/Messages/page";
+import TaskHandover from "./components/Tasks/page";
+import Dashboard from "./components/Dashboard/page";
+import Feedback from "./components/Feedback/page";
 
 const PageWithTabs = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -11,13 +15,17 @@ const PageWithTabs = () => {
   const renderContent = () => {
     switch (activeTab) {
       case "dashboard":
-        return <DashboardLayout />;
+        return <Dashboard />;
       case "inquiries":
         return <InquiryPage />;
       case "messages":
-        return <div>Messages Content</div>;
+        return <Messages />;
       case "tasks":
-        return <div>Tasks Content</div>;
+        return <TaskHandover />;
+      case "checkin":
+        return <Checkin />;
+      case "feedback":
+        return <Feedback />;
       default:
         return null;
     }
@@ -29,7 +37,7 @@ const PageWithTabs = () => {
       <div className="col-span-1">
         <SideLeft />
       </div>
-      <div className="col-span-4 bg-white p-10">
+      <div className="col-span-4 bg-[#F5F5F5] px-10">
         <NavigationBar activeTab={activeTab} setActiveTab={setActiveTab} />
         <div>{renderContent()}</div>
       </div>
