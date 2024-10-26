@@ -3,16 +3,13 @@ from flask_cors import CORS
 from twilio.twiml.voice_response import VoiceResponse
 import openai_helper
 import twilio_helper
-import whisper
-import requests
-import os
-import ssl
-import certifi
-import urllib.request
+import asyncio
+import realtime_helper
 
 # Initialize Flask App
 app = Flask(__name__)
 CORS(app)
+
 # Placeholder for storing conversation history
 conversation_history = []
 
@@ -32,35 +29,41 @@ def handle_call():
 
 @app.route("/process-speech", methods=["POST"])
 def process_speech():
-    recording_url = request.form.get('RecordingUrl')
-    # Check if recording_url is None or empty
-    if not recording_url:
-        return jsonify({"error": "Recording URL is missing."}), 400  # {{ edit_1 }}
+    recording_sid = request.form.get('RecordingSid')
     
-    transcribed_text = openai_helper.transcribe_audio(recording_url)  # {{ edit_2 }}
-    conversation_history.append(transcribed_text)
-    ai_reply = openai_helper.get_gpt_response(transcribed_text)
-    
-    response = VoiceResponse()
-    response.say(ai_reply)
-    
-    if twilio_helper.is_transfer_required(transcribed_text):
-        summary = openai_helper.generate_summary(conversation_history)
-        twilio_helper.notify_agent(summary)
-        response.say("Transferring you to a customer service representative.")
-        response.dial("+6593397218")
-    # try:
-    #     transcribed_text = openai_helper.transcribe_audio()
-    #     ai_reply = openai_helper.get_gpt_response(transcribed_text)
+    try:
+        # Get transcribed text from Twilio
+        transcribed_text = openai_helper.transcribe_audio(recording_sid)
+        conversation_history.append(transcribed_text)
+        
+        # Get AI response based on the transcribed text
+        ai_reply = openai_helper.get_gpt_response(transcribed_text)
+        
+        response = VoiceResponse()
+        response.say(ai_reply)
+        
+        if twilio_helper.is_transfer_required(transcribed_text):
+            summary = openai_helper.generate_summary(conversation_history)
+            twilio_helper.notify_agent(summary)
+            response.say("Transferring you to a customer service representative.")
+            response.dial("+6593397218")
 
-    #     return jsonify({
-    #         "transcription": transcribed_text,
-    #         "ai_response": ai_reply
-    #     }), 200
-    # except Exception as e:
-    #     return jsonify({"error": str(e)}), 500
+        return str(response)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
     
-    return str(response)
+@app.route("/start-stream", methods=["POST"])
+def start_stream():
+    """
+    Initiates real-time transcription via WebSocket for near real-time interaction.
+    """
+    websocket_uri = request.json.get('websocket_uri')
+    if not websocket_uri:
+        return jsonify({"error": "Missing WebSocket URI"}), 400
+    
+    asyncio.run(realtime_helper.handle_real_time_transcription(websocket_uri))
+    return jsonify({"status": "Streaming started"}), 200
+
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
