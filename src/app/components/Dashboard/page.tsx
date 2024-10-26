@@ -13,23 +13,27 @@ const Dashboard: React.FC = () => {
     setIsChatOpen(!isChatOpen);
   };
   return (
-    <div className="my-6 relative">
-      <div className="bg-gray-100 grid grid-cols-2 gap-8">
-        <InquiryRanking />
-        <Calendar />
-      </div>
-      <div className="grid grid-cols-2 gap-8 mt-8">
-        <Annoucement />
-        <Manual />
-      </div>
-      <button
-        onClick={toggleChat}
-        className="fixed bottom-8 right-8 rounded-full shadow-lg bg-[#FF8D3D] hover:bg-teal-500 focus:outline-none"
-      >
-        <Image src="/images/chatbot.png" alt="Chat" width={60} height={60} />
-      </button>
-      {isChatOpen && <ChatPopup onClose={toggleChat} />}
+    // <div className="my-6 relative">
+    //   <div className="bg-gray-100 grid grid-cols-2 gap-8">
+    //     <InquiryRanking />
+    //     <Calendar />
+    //   </div>
+    //   <div className="grid grid-cols-2 gap-8 mt-8">
+    //     <Annoucement />
+    //     <Manual />
+    //   </div>
+    //   <button
+    //     onClick={toggleChat}
+    //     className="fixed bottom-8 right-8 rounded-full shadow-lg bg-[#FF8D3D] hover:bg-teal-500 focus:outline-none"
+    //   >
+    //     <Image src="/images/chatbot.png" alt="Chat" width={60} height={60} />
+    //   </button>
+    //   {isChatOpen && <ChatPopup onClose={toggleChat} />}
+    // </div>
+    <div>
+      <InquiryRanking />
     </div>
+    
   );
 };
 
