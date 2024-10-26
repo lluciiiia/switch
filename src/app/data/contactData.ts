@@ -9,12 +9,12 @@ export const contacts: Record<string, Contact[]> = {
     {
       name: "Emily Johnson",
       role: "Housekeeping",
-      avatar: "https://via.placeholder.com/40",
+      avatar: "/images/emp1.jpg",
     },
     {
       name: "Michael Smith",
       role: "Room Attendant",
-      avatar: "https://via.placeholder.com/40",
+      avatar: "/images/emp2.jpg",
     },
     {
       name: "Sophia Lee",
@@ -31,12 +31,12 @@ export const contacts: Record<string, Contact[]> = {
     {
       name: "Ava Martinez",
       role: "Front Desk Manager",
-      avatar: "https://via.placeholder.com/40",
+      avatar: "/images/emp3.jpg",
     },
     {
       name: "Noah Taylor",
       role: "Receptionist",
-      avatar: "https://via.placeholder.com/40",
+      avatar: "/images/emp6.jpg",
     },
     {
       name: "Isabella Anderson",
@@ -75,12 +75,12 @@ export const contacts: Record<string, Contact[]> = {
     {
       name: "James Brown",
       role: "Security Manager",
-      avatar: "https://via.placeholder.com/40",
+      avatar:"/images/emp5.jpg",
     },
     {
       name: "Olivia Davis",
       role: "Security Officer",
-      avatar: "https://via.placeholder.com/40",
+      avatar: "/images/emp4.jpg",
     },
     {
       name: "Liam Wilson",

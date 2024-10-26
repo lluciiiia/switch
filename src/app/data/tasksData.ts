@@ -20,7 +20,7 @@ export const employees: Employee[] = [
     name: "Emily Johnson",
     role: "Housekeeping Supervisor",
     department: "Housekeeping",
-    avatar: "https://via.placeholder.com/40",
+    avatar: "/images/emp1.jpg",
     tasks: [
       {
         taskId: 101,
@@ -41,7 +41,7 @@ export const employees: Employee[] = [
     name: "Michael Smith",
     role: "Room Attendant",
     department: "Housekeeping",
-    avatar: "https://via.placeholder.com/40",
+    avatar: "/images/emp2.jpg",
     tasks: [
       {
         taskId: 103,
@@ -58,11 +58,11 @@ export const employees: Employee[] = [
     ],
   },
   {
-    id: 4,
+    id: 3,
     name: "James Brown",
     role: "Security Manager",
     department: "Security",
-    avatar: "https://via.placeholder.com/40",
+    avatar: "/images/emp5.jpg",
     tasks: [
       {
         taskId: 105,
@@ -73,11 +73,11 @@ export const employees: Employee[] = [
     ],
   },
   {
-    id: 5,
+    id: 4,
     name: "Olivia Davis",
     role: "Security Officer",
     department: "Security",
-    avatar: "https://via.placeholder.com/40",
+    avatar: "/images/emp4.jpg",
     tasks: [
       {
         taskId: 106,
@@ -94,11 +94,11 @@ export const employees: Employee[] = [
     ],
   },
   {
-    id: 7,
+    id: 5,
     name: "Ava Martinez",
     role: "Front Desk Manager",
     department: "Front Office",
-    avatar: "https://via.placeholder.com/40",
+    avatar: "/images/emp3.jpg",
     tasks: [
       {
         taskId: 108,
@@ -109,11 +109,11 @@ export const employees: Employee[] = [
     ],
   },
   {
-    id: 8,
+    id: 6,
     name: "Noah Taylor",
     role: "Receptionist",
     department: "Front Office",
-    avatar: "https://via.placeholder.com/40",
+    avatar: "/images/emp6.jpg",
     tasks: [
       {
         taskId: 109,
