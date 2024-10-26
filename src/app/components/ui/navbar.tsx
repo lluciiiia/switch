@@ -22,6 +22,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
     { label: "Messages", value: "messages" },
     { label: "Tasks", value: "tasks" },
     { label: "Check-in/out", value: "checkin" },
+    { label: "Feedback", value: "feedback" },
   ];
 
   return (

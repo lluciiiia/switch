@@ -45,9 +45,8 @@ const SideLeft = () => {
     const percentCompleted = Math.round((completedTasks / totalTasks) * 100);
     setPercent(percentCompleted);
   };
-
   return (
-    <div className="bg-[#FE856F] p-5 h-full flex flex-col items-center gap-7 text-white">
+    <div className="bg-[#FF8D3D] p-5 h-full flex flex-col items-center gap-7 text-white">
       <div className="text-center">
         <div>
           <Image src="/images/lyfdesk.png" width={80} height={80} alt="logo" />

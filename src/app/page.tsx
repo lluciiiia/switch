@@ -6,7 +6,8 @@ import NavigationBar from "./components/ui/navbar";
 import Checkin from "./components/CheckIn/page";
 import Messages from "./components/Messages/page";
 import TaskHandover from "./components/Tasks/page";
-import DashboardLayout from "./components/Dashboard/page";
+import Dashboard from "./components/Dashboard/page";
+import Feedback from "./components/Feedback/page";
 
 const PageWithTabs = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -14,7 +15,7 @@ const PageWithTabs = () => {
   const renderContent = () => {
     switch (activeTab) {
       case "dashboard":
-        return <DashboardLayout />;
+        return <Dashboard />;
       case "inquiries":
         return <InquiryPage />;
       case "messages":
@@ -23,6 +24,8 @@ const PageWithTabs = () => {
         return <TaskHandover />;
       case "checkin":
         return <Checkin />;
+      case "feedback":
+        return <Feedback />;
       default:
         return null;
     }
