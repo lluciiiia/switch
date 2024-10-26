@@ -5,7 +5,7 @@ import UserRow from "./UserRow";
 
 const Checkin = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 4;
+  const usersPerPage = 5;
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
@@ -22,28 +22,27 @@ const Checkin = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-4xl my-6 px-4">Check In/Out</h1>
-      <div className="w-full bg-white rounded-md">
+    <div className="my-6">
+      <div className="w-full bg-white rounded-md shadow-md">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+          <div className="py-2 inline-block w-full sm:px-6 lg:px-8">
             <div className="overflow-hidden">
               <table className="min-w-full text-start">
-                <thead className="text-base border-b-2">
+                <thead className="text-lg border-b-2">
                   <tr>
-                    <th scope="col" className="px-6 py-4">
+                    <th scope="col" className="px-6 py-4 text-left">
                       Profile
                     </th>
-                    <th scope="col" className="px-6 py-4">
+                    <th scope="col" className="px-6 py-4 text-left">
                       Contact
                     </th>
-                    <th scope="col" className="px-6 py-4">
+                    <th scope="col" className="px-6 py-4 text-left">
                       Check-in
                     </th>
-                    <th scope="col" className="px-6 py-4">
+                    <th scope="col" className="px-6 py-4 text-left">
                       Check-out
                     </th>
-                    <th scope="col" className="px-6 py-4">
+                    <th scope="col" className="px-6 py-4 text-left">
                       Room number
                     </th>
                   </tr>
@@ -54,7 +53,7 @@ const Checkin = () => {
                   ))}
                 </tbody>
               </table>
-              <div className="flex justify-end gap-4 mt-4 mx-4">
+              <div className="flex justify-end gap-4 mt-4 mx-4 mb-2">
                 <button
                   onClick={handlePreviousPage}
                   disabled={currentPage === 1}

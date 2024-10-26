@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import ContactList from "./ContactList";
 import MessageArea from "./Message";

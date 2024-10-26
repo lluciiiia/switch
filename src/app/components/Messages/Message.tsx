@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 interface Message {
   from: string;
@@ -79,7 +81,7 @@ const MessageArea: React.FC<MessageAreaProps> = ({ selectedContact }) => {
           onClick={handleSend}
           className="px-4 py-2 bg-teal-500 text-white rounded-md"
         >
-          Send
+          <FontAwesomeIcon icon={faPaperPlane} />
         </button>
       </div>
     </div>
