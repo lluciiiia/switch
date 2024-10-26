@@ -1,15 +1,7 @@
-"use client";
+import React from "react";
 
-import { Summary } from "./Summary";
-import { WorksPanel } from "./WorksPanel";
-
-const DashboardLayout = () => {
-  return (
-    <div className="py-6">
-      <WorksPanel />
-      <Summary />
-    </div>
-  );
+const Dashboard = () => {
+  return <div>Dashboard</div>;
 };
 
-export default DashboardLayout;
+export default Dashboard;
