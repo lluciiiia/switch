@@ -10,8 +10,8 @@ interface userRow {
 
 export const users: userRow[] = [
   {
-    name: "SeoKyung Kim",
-    avatar: "https://via.placeholder.com/40",
+    name: "Johnny Cage",
+    avatar: "/images/emp23.jpg",
     title: "Business Invester",
     contact: "+84 96 4904800",
     checkin: "October 25, 2024, 3:00 PM",
@@ -20,7 +20,7 @@ export const users: userRow[] = [
   },
   {
     name: "John Doe",
-    avatar: "https://via.placeholder.com/40",
+    avatar: "/images/emp21.jpg",
     title: "Software Engineer",
     contact: "+84 93 1234567",
     checkin: "October 24, 2024, 2:00 PM",
@@ -29,7 +29,7 @@ export const users: userRow[] = [
   },
   {
     name: "Jane Smith",
-    avatar: "https://via.placeholder.com/40",
+    avatar: "/images/emp13.jpg",
     title: "Marketing Manager",
     contact: "+84 91 6543210",
     checkin: "October 23, 2024, 1:00 PM",
@@ -38,7 +38,7 @@ export const users: userRow[] = [
   },
   {
     name: "David Lee",
-    avatar: "https://via.placeholder.com/40",
+    avatar: "/images/emp20.jpg",
     title: "Data Scientist",
     contact: "+84 97 8765432",
     checkin: "October 22, 2024, 4:00 PM",
@@ -47,7 +47,7 @@ export const users: userRow[] = [
   },
   {
     name: "Anna Wong",
-    avatar: "https://via.placeholder.com/40",
+    avatar: "/images/emp22.jpg",
     title: "HR Manager",
     contact: "+84 98 7654321",
     checkin: "October 21, 2024, 5:00 PM",

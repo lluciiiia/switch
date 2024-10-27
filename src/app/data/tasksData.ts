@@ -20,7 +20,7 @@ export const employees: Employee[] = [
     name: "Emily Johnson",
     role: "Housekeeping Supervisor",
     department: "Housekeeping",
-    avatar: "/images/emp1.jpg",
+    avatar: "/images/emp17.jpg",
     tasks: [
       {
         taskId: 101,
@@ -41,7 +41,7 @@ export const employees: Employee[] = [
     name: "Michael Smith",
     role: "Room Attendant",
     department: "Housekeeping",
-    avatar: "/images/emp2.jpg",
+    avatar: "/images/emp18.jpg",
     tasks: [
       {
         taskId: 103,
@@ -62,7 +62,7 @@ export const employees: Employee[] = [
     name: "James Brown",
     role: "Security Manager",
     department: "Security",
-    avatar: "/images/emp5.jpg",
+    avatar: "/images/emp20.jpg",
     tasks: [
       {
         taskId: 105,
@@ -98,7 +98,7 @@ export const employees: Employee[] = [
     name: "Ava Martinez",
     role: "Front Desk Manager",
     department: "Front Office",
-    avatar: "/images/emp3.jpg",
+    avatar: "/images/emp14.jpg",
     tasks: [
       {
         taskId: 108,

@@ -9,29 +9,24 @@ export const contacts: Record<string, Contact[]> = {
     {
       name: "Emily Johnson",
       role: "Housekeeping",
-      avatar: "/images/emp1.jpg",
+      avatar: "/images/emp17.jpg",
     },
     {
       name: "Michael Smith",
       role: "Room Attendant",
-      avatar: "/images/emp2.jpg",
+      avatar: "/images/emp18.jpg",
     },
     {
       name: "Sophia Lee",
       role: "Laundry Attendant",
-      avatar: "https://via.placeholder.com/40",
-    },
-    {
-      name: "Sophia Lee",
-      role: "Laundry Attendant",
-      avatar: "https://via.placeholder.com/40",
+      avatar: "/images/emp16.jpg",
     },
   ],
   "Front Office": [
     {
       name: "Ava Martinez",
       role: "Front Desk Manager",
-      avatar: "/images/emp3.jpg",
+      avatar: "/images/emp14.jpg",
     },
     {
       name: "Noah Taylor",
@@ -41,41 +36,31 @@ export const contacts: Record<string, Contact[]> = {
     {
       name: "Isabella Anderson",
       role: "Concierge",
-      avatar: "https://via.placeholder.com/40",
-    },
-    {
-      name: "Isabella Anderson",
-      role: "Concierge",
-      avatar: "https://via.placeholder.com/40",
+      avatar: "/images/emp19.jpg",
     },
   ],
   Finance: [
     {
       name: "Ethan Thomas",
       role: "Finance Director",
-      avatar: "https://via.placeholder.com/40",
+      avatar: "/images/emp8.jpg",
     },
     {
       name: "Mia White",
       role: "Accountant",
-      avatar: "https://via.placeholder.com/40",
+      avatar: "/images/emp12.jpg",
     },
     {
       name: "Lucas Harris",
       role: "Financial Analyst",
-      avatar: "https://via.placeholder.com/40",
-    },
-    {
-      name: "Lucas Harris",
-      role: "Financial Analyst",
-      avatar: "https://via.placeholder.com/40",
+      avatar: "/images/emp11.jpg",
     },
   ],
-  Security: [
+  Guard: [
     {
       name: "James Brown",
       role: "Security Manager",
-      avatar:"/images/emp5.jpg",
+      avatar:"/images/emp20.jpg",
     },
     {
       name: "Olivia Davis",
@@ -85,34 +70,7 @@ export const contacts: Record<string, Contact[]> = {
     {
       name: "Liam Wilson",
       role: "CCTV Operator",
-      avatar: "https://via.placeholder.com/40",
-    },
-    {
-      name: "Liam Wilson",
-      role: "CCTV Operator",
-      avatar: "https://via.placeholder.com/40",
-    },
-  ],
-  Gaud: [
-    {
-      name: "James Brown",
-      role: "Security Manager",
-      avatar: "https://via.placeholder.com/40",
-    },
-    {
-      name: "Olivia Davis",
-      role: "Security Officer",
-      avatar: "https://via.placeholder.com/40",
-    },
-    {
-      name: "Liam Wilson",
-      role: "CCTV Operator",
-      avatar: "https://via.placeholder.com/40",
-    },
-    {
-      name: "Liam Wilson",
-      role: "CCTV Operator",
-      avatar: "https://via.placeholder.com/40",
+      avatar: "/images/emp15.jpg",
     },
   ],
 };
