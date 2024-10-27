@@ -6,6 +6,8 @@ interface userRow {
   checkin: string;
   checkout: string;
   roomNumber: number;
+  hasCheckIn: boolean;
+  hasCheckOut: boolean;
 }
 
 const UserRow = ({ user }: { user: userRow }) => {
@@ -27,11 +29,19 @@ const UserRow = ({ user }: { user: userRow }) => {
       <td className="px-6 py-4">{user.contact}</td>
       <td className="px-6 py-4">
         {user.checkin}{" "}
-        <span className="inline-block w-3 h-3 rounded-full bg-orange-500"></span>
+        <span
+          className={`inline-block w-3 h-3 rounded-full ${
+            user.hasCheckIn ? "bg-green-500" : "bg-orange-500"
+          }`}
+        ></span>
       </td>
       <td className="px-6 py-4">
         {user.checkout}{" "}
-        <span className="inline-block w-3 h-3 rounded-full bg-orange-500"></span>
+        <span
+          className={`inline-block w-3 h-3 rounded-full ${
+            user.hasCheckOut ? "bg-green-500" : "bg-orange-500"
+          }`}
+        ></span>
       </td>
       <td className="px-6 py-4">{user.roomNumber}</td>
     </tr>

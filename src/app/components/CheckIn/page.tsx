@@ -5,11 +5,21 @@ import UserRow from "./UserRow";
 
 const Checkin = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [filterStatus, setFilterStatus] = useState<"all" | "checkedInOnly" | "checkedOut" | "notCheckedIn" | "completedStay">("all");
   const usersPerPage = 5;
+
+  // Filter users based on filterStatus
+  const filteredUsers = users.filter((user) => {
+    if (filterStatus === "checkedInOnly") return user.hasCheckIn && !user.hasCheckOut;
+    if (filterStatus === "checkedOut") return user.hasCheckOut && !user.hasCheckIn;
+    if (filterStatus === "notCheckedIn") return !user.hasCheckIn && !user.hasCheckOut;
+    if (filterStatus === "completedStay") return user.hasCheckIn && user.hasCheckOut;
+    return true; // Show all users
+  });
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
   const handlePreviousPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
@@ -17,12 +27,29 @@ const Checkin = () => {
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) =>
-      Math.min(prevPage + 1, Math.ceil(users.length / usersPerPage))
+      Math.min(prevPage + 1, Math.ceil(filteredUsers.length / usersPerPage))
     );
+  };
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilterStatus(event.target.value as "all" | "checkedInOnly" | "checkedOut" | "notCheckedIn" | "completedStay");
+    setCurrentPage(1); // Reset to page 1 when changing filter
   };
 
   return (
     <div className="my-6">
+      <div className="flex justify-start gap-4 mb-4">
+        <select
+          value={filterStatus}
+          onChange={handleFilterChange}
+          className="px-4 py-2 rounded bg-gray-300 text-black"
+        >
+          <option value="all">All</option>
+          <option value="checkedInOnly">Checked In Only</option>
+          <option value="notCheckedIn">Not Checked In</option>
+          <option value="completedStay">Completed Stay</option>
+        </select>
+      </div>
       <div className="w-full bg-white rounded-md shadow-md">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 inline-block w-full sm:px-6 lg:px-8">
@@ -64,7 +91,7 @@ const Checkin = () => {
                 <button
                   onClick={handleNextPage}
                   disabled={
-                    currentPage === Math.ceil(users.length / usersPerPage)
+                    currentPage === Math.ceil(filteredUsers.length / usersPerPage)
                   }
                   className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
                 >
