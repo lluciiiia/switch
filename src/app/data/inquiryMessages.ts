@@ -7,7 +7,7 @@ interface Message {
 
 export const messages: Message[] = [
     {
-        id: 1,
+        id: 1, 
         text: "Hello! I have an appointment, and I need help with the check-in process.",
         sender: "customer",
         time: "2024-04-12 01:47 PM",
