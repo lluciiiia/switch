@@ -3,44 +3,39 @@ import websockets
 import openai_helper
 import json
 import logging
+from flask_socketio import SocketIO
 
+socketio = SocketIO()
 logger = logging.getLogger(__name__)
 
-async def stream_transcription(uri, transcriptions_queue):
-    """
-    Connects to WebSocket URI and processes audio in real-time, putting transcriptions in a queue.
-    """
-    async with websockets.connect(uri) as websocket:
+async def handle_real_time_transcription(websocket_uri):
+    async with websockets.connect(websocket_uri) as websocket:
+        # Start receiving audio data from Twilio
         while True:
             try:
-                # Receiving audio packets and transcribing asynchronously
-                transcription = await websocket.recv()
-                transcriptions_queue.put_nowait(transcription)
+                # This will wait for incoming audio data from Twilio
+                data = await websocket.recv()
+                # Process the audio data
+                await process_streamed_audio(data)
             except websockets.ConnectionClosed as e:
                 logger.error(f"WebSocket connection closed: {str(e)}")
                 break
 
-async def process_streamed_audio(transcriptions_queue):
+async def process_streamed_audio(audio_chunk):
     """
-    Asynchronously retrieves transcriptions from the queue and generates responses using OpenAI.
+    Generates responses asynchronously based on transcriptions of audio chunks.
     """
-    while True:
-        transcription = await transcriptions_queue.get()
-        
-        if transcription:
-            # Get GPT response asynchronously
-            ai_reply = await openai_helper.get_gpt_response(transcription)
-            logger.info(f"AI Response: {ai_reply}")
-            
-            # Optionally, send the AI response to Twilio or further process it
-            # Send response to user (e.g., via Twilio or WebSocket response)
+    # Here you would typically send the audio_chunk to a transcription service
+    # For simplicity, we'll simulate a transcription
+    transcription = simulate_transcription(audio_chunk)  # Replace with actual transcription logic
+    if transcription:
+        ai_reply = await openai_helper.get_gpt_response(transcription)
+        logger.info(f"AI Response: {ai_reply}")
+        socketio.emit("ai_reply", {"response": ai_reply})
 
-async def handle_real_time_transcription(uri):
+def simulate_transcription(audio_chunk):
     """
-    Manages real-time transcription tasks, including connecting to WebSocket and handling audio processing.
+    Simulate audio transcription (replace with actual service).
     """
-    transcriptions_queue = asyncio.Queue()
-    await asyncio.gather(
-        stream_transcription(uri, transcriptions_queue),
-        process_streamed_audio(transcriptions_queue)
-    )
+    # In a real implementation, send audio_chunk to a speech-to-text service and return the result
+    return "Simulated transcription of audio chunk"
