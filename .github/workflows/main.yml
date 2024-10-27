@@ -1,0 +1,53 @@
+name: Deploy Web app to EC2
+
+on:
+  push:
+    branches:
+      - main  # Specify the branch that will trigger the deployment
+
+jobs:
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Check out the latest code from the repository
+      - name: Checkout Code
+        uses: actions/checkout@v2 
+
+      # Step 2: Set up SSH Key for secure access to EC2
+      - name: Set up SSH Key
+        env:
+          PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          echo "$PRIVATE_KEY" > private_key
+          chmod 600 private_key
+
+      # Step 3: Deploy Code to EC2 using rsync
+      - name: Deploy Code to EC2
+        env:
+          HOSTNAME: ${{ secrets.EC2_HOST }}
+          USER_NAME: ${{ secrets.EC2_USER }}
+        run: |
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no -i private_key" \
+            "${GITHUB_WORKSPACE}/" "${USER_NAME}@${HOSTNAME}:/home/${USER_NAME}/switch"
+
+      # Step 4: SSH into EC2 to install dependencies and run in development mode
+      - name: Install Dependencies and Start Development Server
+        env:
+          HOSTNAME: ${{ secrets.EC2_HOST }}
+          USER_NAME: ${{ secrets.EC2_USER }}
+        run: |
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} <<EOF
+            cd /home/${USER_NAME}/switch
+
+            # Install dependencies
+            sudo npm install
+
+            # Run the development server
+            npm run dev
+          EOF
+
+      # Step 5: Clean up the SSH key file
+      - name: Remove SSH Key
+        run: rm private_key
