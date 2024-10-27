@@ -1,3 +1,4 @@
+"use client"
 import { feedbackData } from "@/app/data/feedbackData";
 import React, { useState } from "react";
 
