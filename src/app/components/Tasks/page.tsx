@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { employees } from "../../data/tasksData";
 import TaskPopup from "./TaskPopup";
-import EditTaskPopup from "./EditTaskPopup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 
@@ -48,18 +47,60 @@ const getStatusColor = (status: string): string => {
   }
 };
 
+// ReminderForm Component for setting reminders
+const ReminderForm: React.FC<{
+  task: Task;
+  onSave: (taskId: number, reminderTime: string) => void;
+  onClose: () => void;
+}> = ({ task, onSave, onClose }) => {
+  const [reminderTime, setReminderTime] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSave(task.taskId, reminderTime);
+    onClose();
+  };
+
+  return (
+    <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow-lg">
+        <h3 className="text-lg font-semibold mb-4">Set Reminder for {task.description}</h3>
+        <label className="block text-sm font-medium text-gray-700">
+          Reminder Time:
+          <input
+            type="datetime-local"
+            value={reminderTime}
+            onChange={(e) => setReminderTime(e.target.value)}
+            className="mt-1 block w-full p-2 border rounded-md"
+            required
+          />
+        </label>
+        <div className="flex justify-end mt-4 space-x-2">
+          <button
+            type="button"
+            onClick={onClose}
+            className="bg-gray-500 text-white px-3 py-1 rounded-md"
+          >
+            Cancel
+          </button>
+          <button type="submit" className="bg-blue-500 text-white px-3 py-1 rounded-md">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
 const TaskHandover: React.FC = () => {
   const [employeeData, setEmployeeData] = useState(employees);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
-  const [selectedDepartment, setSelectedDepartment] = useState<string | null>(
-    null
-  );
-  const [selectedTask, setSelectedTask] = useState<{
-    department: string;
-    employeeId: number;
-    task: Task;
-  } | null>(null);
+  const [selectedDepartment, setSelectedDepartment] = useState<string | null>(null);
+  const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null);
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
+  const [reminders, setReminders] = useState<{ [taskId: number]: string }>({});
+  const [showReminderForm, setShowReminderForm] = useState(false);
+  const [currentTaskForReminder, setCurrentTaskForReminder] = useState<Task | null>(null);
 
   const handleAddTask = (
     department: string,
@@ -76,24 +117,52 @@ const TaskHandover: React.FC = () => {
     setIsPopupOpen(false);
   };
 
-  const handleEditTask = (
-    department: string,
-    employeeId: number,
-    updatedTask: Task
-  ) => {
+  const startEditingTask = (task: Task) => {
+    setEditingTask(task);
+    setShowReminderForm(false); // Ensure reminder form is closed when editing
+  };
+
+  const handleTaskUpdate = (employeeId: number, department: string) => {
+    if (!editingTask) return;
+
     setEmployeeData((prevData) =>
       prevData.map((employee) =>
         employee.id === employeeId && employee.department === department
           ? {
               ...employee,
               tasks: employee.tasks.map((task) =>
-                task.taskId === updatedTask.taskId ? updatedTask : task
+                task.taskId === editingTask.taskId ? editingTask : task
               ),
             }
           : employee
       )
     );
-    setIsEditPopupOpen(false);
+    setEditingTask(null);
+    setSelectedTaskId(null);
+  };
+
+  const handleDeleteTask = (employeeId: number, department: string, taskId: number) => {
+    setEmployeeData((prevData) =>
+      prevData.map((employee) =>
+        employee.id === employeeId && employee.department === department
+          ? { ...employee, tasks: employee.tasks.filter((task) => task.taskId !== taskId) }
+          : employee
+      )
+    );
+    setSelectedTaskId(null);
+  };
+
+  const openReminderForm = (task: Task) => {
+    setCurrentTaskForReminder(task);
+    setShowReminderForm(true);
+    setEditingTask(null); // Ensure edit mode is turned off when setting reminder
+  };
+
+  const saveReminder = (taskId: number, reminderTime: string) => {
+    setReminders((prevReminders) => ({
+      ...prevReminders,
+      [taskId]: reminderTime,
+    }));
   };
 
   const openPopup = (department: string) => {
@@ -106,20 +175,6 @@ const TaskHandover: React.FC = () => {
     setSelectedDepartment(null);
   };
 
-  const openEditPopup = (
-    department: string,
-    employeeId: number,
-    task: Task
-  ) => {
-    setSelectedTask({ department, employeeId, task });
-    setIsEditPopupOpen(true);
-  };
-
-  const closeEditPopup = () => {
-    setIsEditPopupOpen(false);
-    setSelectedTask(null);
-  };
-
   const departments = employeeData.reduce(
     (acc: { [key: string]: Employee[] }, employee: Employee) => {
       acc[employee.department] = acc[employee.department] || [];
@@ -129,15 +184,33 @@ const TaskHandover: React.FC = () => {
     {}
   );
 
+  useEffect(() => {
+    const checkReminders = () => {
+      const now = new Date();
+      Object.entries(reminders).forEach(([taskId, reminderTime]) => {
+        const reminderDate = new Date(reminderTime);
+        if (reminderDate <= now) {
+          alert(`Reminder: Task ID ${taskId} is due!`);
+          setReminders((prevReminders) => {
+            const updatedReminders = { ...prevReminders };
+            delete updatedReminders[parseInt(taskId)];
+            return updatedReminders;
+          });
+        }
+      });
+    };
+
+    const interval = setInterval(checkReminders, 60000); // Check every minute
+    return () => clearInterval(interval);
+  }, [reminders]);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
       {Object.keys(departments).map((department) => (
         <div key={department} className="bg-white rounded-lg shadow-md p-4">
           <div className="flex justify-between items-center">
             <h2
-              className={`text-lg font-semibold ${getDepartmentColor(
-                department
-              )}`}
+              className={`text-lg font-semibold ${getDepartmentColor(department)}`}
             >
               {department}
             </h2>
@@ -161,9 +234,7 @@ const TaskHandover: React.FC = () => {
                     className="w-10 h-10 rounded-full"
                   />
                   <div>
-                    <h3 className="font-semibold text-gray-700">
-                      {employee.name}
-                    </h3>
+                    <h3 className="font-semibold text-gray-700">{employee.name}</h3>
                     <p className="text-sm text-gray-500">{employee.role}</p>
                   </div>
                 </div>
@@ -173,30 +244,112 @@ const TaskHandover: React.FC = () => {
                       {employee.tasks.map((task: Task) => (
                         <li
                           key={task.taskId}
-                          className="flex justify-between items-center p-2 bg-white rounded-md shadow-sm"
+                          className="flex justify-between items-center p-2 bg-white rounded-md shadow-sm relative"
                         >
                           <div>
-                            <p className="text-sm font-medium text-gray-700">
-                              Task: {task.description}
-                            </p>
-                            <p className="text-xs text-gray-500">
-                              Due: {task.dueDate} | Status:{" "}
-                              <span
-                                className={`font-semibold ${getStatusColor(
-                                  task.status
-                                )}`}
-                              >
-                                {task.status}
-                              </span>
-                            </p>
+                            {editingTask && editingTask.taskId === task.taskId ? (
+                              <div className="space-y-2">
+                                <input
+                                  type="text"
+                                  value={editingTask.description}
+                                  onChange={(e) =>
+                                    setEditingTask({ ...editingTask, description: e.target.value })
+                                  }
+                                  className="w-full p-1 border rounded-md"
+                                />
+                                <input
+                                  type="date"
+                                  value={editingTask.dueDate}
+                                  onChange={(e) =>
+                                    setEditingTask({ ...editingTask, dueDate: e.target.value })
+                                  }
+                                  className="w-full p-1 border rounded-md"
+                                />
+                                <select
+                                  value={editingTask.status}
+                                  onChange={(e) =>
+                                    setEditingTask({ ...editingTask, status: e.target.value })
+                                  }
+                                  className="w-full p-1 border rounded-md"
+                                >
+                                  <option value="Pending">Pending</option>
+                                  <option value="In Progress">In Progress</option>
+                                  <option value="Completed">Completed</option>
+                                </select>
+                                <button
+                                  onClick={() => handleTaskUpdate(employee.id, department)}
+                                  className="w-full mt-2 p-1 bg-green-500 text-white rounded-md"
+                                >
+                                  Save
+                                </button>
+                                <button
+                                  onClick={() => setEditingTask(null)}
+                                  className="w-full mt-1 p-1 bg-red-500 text-white rounded-md"
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            ) : (
+                              <>
+                                <p className="text-sm font-medium text-gray-700">
+                                  Task: {task.description}
+                                </p>
+                                <p className="text-xs text-gray-500">
+                                  Due: {task.dueDate} | Status:{" "}
+                                  <span className={`font-semibold ${getStatusColor(task.status)}`}>
+                                    {task.status}
+                                  </span>
+                                </p>
+                                {reminders[task.taskId] && (
+                                  <p className="text-xs text-blue-500">
+                                    Reminder set for: {reminders[task.taskId]}
+                                  </p>
+                                )}
+                              </>
+                            )}
                           </div>
-                          <FontAwesomeIcon
-                            icon={faEllipsisVertical}
-                            className="px-2 cursor-pointer"
-                            onClick={() =>
-                              openEditPopup(department, employee.id, task)
-                            }
-                          />
+                          <div className="relative">
+                            <FontAwesomeIcon
+                              icon={faEllipsisVertical}
+                              className="px-2 cursor-pointer"
+                              onClick={() =>
+                                setSelectedTaskId(selectedTaskId === task.taskId ? null : task.taskId)
+                              }
+                            />
+                            {selectedTaskId === task.taskId && !editingTask && (
+                              <div
+                                className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-50"
+                                style={{ position: "absolute", zIndex: 50 }}
+                              >
+                                <ul className="p-2 space-y-1">
+                                  <li>
+                                    <button
+                                      onClick={() => startEditingTask(task)}
+                                      className="w-full text-left text-sm text-gray-700 hover:bg-gray-100 p-2 rounded"
+                                    >
+                                      Edit
+                                    </button>
+                                  </li>
+                                  <li>
+                                    <button
+                                      onClick={() => handleDeleteTask(employee.id, department, task.taskId)}
+                                      className="w-full text-left text-sm text-gray-700 hover:bg-gray-100 p-2 rounded"
+                                    >
+                                      Delete
+                                    </button>
+                                  </li>
+                                  <li>
+                                    <button
+                                      onClick={() => openReminderForm(task)}
+                                      className="w-full text-left text-sm text-gray-700 hover:bg-gray-100 p-2 rounded"
+                                    >
+                                      Set Reminder
+                                    </button>
+                                  </li>
+                                </ul>
+                              </div>
+                            )}
+                          </div>
                         </li>
                       ))}
                     </ul>
@@ -217,13 +370,11 @@ const TaskHandover: React.FC = () => {
           onClose={closePopup}
         />
       )}
-      {isEditPopupOpen && selectedTask !== null && (
-        <EditTaskPopup
-          department={selectedTask.department}
-          employeeId={selectedTask.employeeId}
-          task={selectedTask.task}
-          onEditTask={handleEditTask}
-          onClose={closeEditPopup}
+      {showReminderForm && currentTaskForReminder && (
+        <ReminderForm
+          task={currentTaskForReminder}
+          onSave={saveReminder}
+          onClose={() => setShowReminderForm(false)}
         />
       )}
     </div>
