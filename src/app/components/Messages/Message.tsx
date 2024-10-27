@@ -11,7 +11,7 @@ interface Message {
 interface Contact {
   name: string;
   role: string;
-  avatar: string;
+  avatar?: string;
 }
 
 interface MessageAreaProps {

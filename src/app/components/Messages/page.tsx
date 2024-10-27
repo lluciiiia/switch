@@ -7,6 +7,7 @@ import MessageArea from "./Message";
 interface Contact {
   name: string;
   role: string;
+  avatar?: string;
 }
 
 const Page: React.FC = () => {
