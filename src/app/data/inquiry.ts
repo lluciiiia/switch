@@ -24,7 +24,7 @@ export const inquiries: Inquiry[] = [
     name: 'Emily Roberts',
     profile: 'Business Investor', // Updated position
     title: 'Challenges in Attracting and Retaining Customers',
-    socialMediaType: 'WhatsApp',
+    socialMediaType: 'Telegram',
     socialMediaHandle: '@emily_roberts_wa',
     dateTime: '2024.10.16, 10:35 AM',
     icon: 'send',

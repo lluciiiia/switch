@@ -21,12 +21,10 @@ interface Inquiry {
 
 
 const socialMediaIcons: { [key: string]: any } = {
-  Snapchat: faSnapchat,
-  WhatsApp: faWhatsapp,
-  Instagram: faInstagram,
-  Telegram: faTelegram,
-  Phone: faPhone,
-  Gmail: faEnvelope
+  Instagram: "/images/ig.png",
+  Telegram: "/images/tele.png",
+  Phone: "/images/phone.png",
+  Gmail: "/images/gmail.png"
 };
 
 const InquiryCard = ({ inquiry }: { inquiry: Inquiry }) => {
@@ -102,9 +100,10 @@ const InquiryCard = ({ inquiry }: { inquiry: Inquiry }) => {
             {/* Social Media Section */}
             <div className="flex items-center space-x-2">
               {socialMediaIcons[inquiry.socialMediaType] ? (
-                <FontAwesomeIcon
-                  icon={socialMediaIcons[inquiry.socialMediaType]}
-                  className="w-6 h-6 text-gray-600"
+                <img
+                  src={socialMediaIcons[inquiry.socialMediaType]}
+                  alt={inquiry.socialMediaType}
+                  className="w-5 h-5 rounded-full"
                 />
               ) : (
                 <FontAwesomeIcon
@@ -185,9 +184,10 @@ const InquiryCard = ({ inquiry }: { inquiry: Inquiry }) => {
             </div>
             <div className="flex items-center space-x-2 w-[20%]">
               {socialMediaIcons[inquiry.socialMediaType] ? (
-                <FontAwesomeIcon
-                  icon={socialMediaIcons[inquiry.socialMediaType]}
-                  className="w-6 h-6 text-gray-600"
+                <img
+                  src={socialMediaIcons[inquiry.socialMediaType]}
+                  alt={inquiry.socialMediaType}
+                  className="w-5 h-5 rounded-full"
                 />
               ) : (
                 <FontAwesomeIcon

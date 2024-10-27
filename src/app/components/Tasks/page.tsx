@@ -101,6 +101,7 @@ const TaskHandover: React.FC = () => {
   const [reminders, setReminders] = useState<{ [taskId: number]: string }>({});
   const [showReminderForm, setShowReminderForm] = useState(false);
   const [currentTaskForReminder, setCurrentTaskForReminder] = useState<Task | null>(null);
+  const [timeOfDay, setTimeOfDay] = useState("Morning");
 
   const handleAddTask = (
     department: string,
@@ -207,6 +208,7 @@ const TaskHandover: React.FC = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
       {Object.keys(departments).map((department) => (
+        
         <div key={department} className="bg-white rounded-lg shadow-md p-4">
           <div className="flex justify-between items-center">
             <h2
@@ -350,15 +352,33 @@ const TaskHandover: React.FC = () => {
                               </div>
                             )}
                           </div>
+                          
                         </li>
                       ))}
                     </ul>
+                    
                   ) : (
                     <p className="text-sm text-gray-500">No tasks assigned.</p>
                   )}
                 </div>
               </div>
             ))}
+
+
+              {/* Render the dropdown only if the department is "Frontdesk" */}
+          {department === "Front Office" && (
+            <div>
+              <select
+                value={timeOfDay}
+                onChange={(e) => setTimeOfDay(e.target.value)}
+                className="p-2 border rounded-md"
+              >
+                <option value="Morning">Morning</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Night">Night</option>
+              </select>
+            </div>
+          )}
           </div>
         </div>
       ))}
