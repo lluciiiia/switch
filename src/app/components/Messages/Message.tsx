@@ -11,6 +11,7 @@ interface Message {
 interface Contact {
   name: string;
   role: string;
+  avatar: string;
 }
 
 interface MessageAreaProps {
@@ -39,8 +40,12 @@ const MessageArea: React.FC<MessageAreaProps> = ({ selectedContact }) => {
 
   return (
     <div className="flex flex-col h-[580px] bg-white shadow p-4 rounded-lg w-full">
-      <div className="flex items-center mb-4">
-        <div className="rounded-full bg-gray-200 w-12 h-12 mr-3"></div>
+      <div className="flex items-center space-x-2 space-mb-4">
+        <img
+          src={selectedContact.avatar}
+          alt={selectedContact.name}
+          className="w-10 h-10 rounded-full"
+        />
         <div>
           <p className="font-medium">{selectedContact.name}</p>
           <p className="text-sm text-gray-500">{selectedContact.role}</p>
@@ -50,21 +55,28 @@ const MessageArea: React.FC<MessageAreaProps> = ({ selectedContact }) => {
         {messages.map((msg, index) => (
           <div
             key={index}
-            className={`mb-4 flex ${
-              msg.from === "You" ? "justify-end" : "justify-start"
-            }`}
+            className={`mb-4 flex ${msg.from === "You" ? "justify-end" : "justify-start"}`}
           >
             <div className="flex gap-2 items-center">
               {msg.from !== "You" && (
-                <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
+                <img
+                  src={selectedContact.avatar}
+                  alt={selectedContact.name}
+                  className="w-5 h-5 rounded-full"
+                />
               )}
               <p
-                className={`text-sm text-gray-700 p-2 bg-gray-100 w-fit rounded-full ${
-                  msg.from === "You" ? "bg-teal-500 text-white" : "bg-gray-100"
-                }`}
+                className={`text-sm text-gray-700 p-2 w-fit rounded-full ${msg.from === "You" ? "bg-teal-500 text-white" : "bg-gray-100"}`}
               >
                 {msg.message}
               </p>
+              {msg.from === "You" && (
+                <img
+                  src="/images/profile.png"
+                  alt={selectedContact.name}
+                  className="w-5 h-5 rounded-full"
+                />
+              )}
             </div>
           </div>
         ))}

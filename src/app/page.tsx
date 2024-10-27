@@ -24,8 +24,8 @@ const PageWithTabs = () => {
         return <TaskHandover />;
       case "checkin":
         return <Checkin />;
-      case "feedback":
-        return <Feedback />;
+      // case "feedback":
+      //   return <Feedback />;
       default:
         return null;
     }

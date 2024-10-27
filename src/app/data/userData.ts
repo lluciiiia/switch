@@ -6,53 +6,65 @@ interface userRow {
   checkin: string;
   checkout: string;
   roomNumber: number;
+  hasCheckIn: boolean;
+  hasCheckOut: boolean;
 }
 
 export const users: userRow[] = [
   {
-    name: "SeoKyung Kim",
-    avatar: "https://via.placeholder.com/40",
+    name: "Johnny Cage",
+    avatar: "/images/emp23.jpg",
     title: "Business Invester",
     contact: "+84 96 4904800",
     checkin: "October 25, 2024, 3:00 PM",
     checkout: "October 28, 2024, 11:00 AM",
     roomNumber: 101,
+    hasCheckIn: true,
+    hasCheckOut: false,
   },
   {
     name: "John Doe",
-    avatar: "https://via.placeholder.com/40",
+    avatar: "/images/emp21.jpg",
     title: "Software Engineer",
     contact: "+84 93 1234567",
     checkin: "October 24, 2024, 2:00 PM",
     checkout: "October 29, 2024, 10:00 AM",
     roomNumber: 102,
+    hasCheckIn: true,
+    hasCheckOut: true,
   },
   {
     name: "Jane Smith",
-    avatar: "https://via.placeholder.com/40",
+    avatar: "/images/emp13.jpg",
     title: "Marketing Manager",
     contact: "+84 91 6543210",
     checkin: "October 23, 2024, 1:00 PM",
     checkout: "October 30, 2024, 9:00 AM",
     roomNumber: 103,
+    hasCheckIn: false,
+    hasCheckOut: false,
   },
   {
     name: "David Lee",
-    avatar: "https://via.placeholder.com/40",
+    avatar: "/images/emp20.jpg",
     title: "Data Scientist",
     contact: "+84 97 8765432",
     checkin: "October 22, 2024, 4:00 PM",
     checkout: "October 31, 2024, 12:00 PM",
     roomNumber: 104,
+    hasCheckIn: false,
+    hasCheckOut: false,
   },
   {
     name: "Anna Wong",
-    avatar: "https://via.placeholder.com/40",
+    avatar: "/images/emp22.jpg",
     title: "HR Manager",
     contact: "+84 98 7654321",
     checkin: "October 21, 2024, 5:00 PM",
     checkout: "October 30, 2024, 1:00 PM",
     roomNumber: 105,
+    hasCheckIn: true,
+    hasCheckOut: false,
   },
   {
     name: "Peter Parker",
@@ -62,6 +74,8 @@ export const users: userRow[] = [
     checkin: "October 20, 2024, 6:00 PM",
     checkout: "October 29, 2024, 2:00 PM",
     roomNumber: 106,
+    hasCheckIn: true,
+    hasCheckOut: false,
   },
   {
     name: "Tony Stark",
@@ -71,6 +85,8 @@ export const users: userRow[] = [
     checkin: "October 19, 2024, 3:00 PM",
     checkout: "October 28, 2024, 11:00 AM",
     roomNumber: 107,
+    hasCheckIn: true,
+    hasCheckOut: false,
   },
   {
     name: "Natasha",
@@ -80,6 +96,8 @@ export const users: userRow[] = [
     checkin: "October 18, 2024, 7:00 PM",
     checkout: "October 30, 2024, 9:00 AM",
     roomNumber: 108,
+    hasCheckIn: false,
+    hasCheckOut: false,
   },
   {
     name: "Bruce Wayne",
@@ -89,6 +107,8 @@ export const users: userRow[] = [
     checkin: "October 17, 2024, 8:00 PM",
     checkout: "October 29, 2024, 8:00 AM",
     roomNumber: 109,
+    hasCheckIn: true,
+    hasCheckOut: true,
   },
   {
     name: "Clark Kent",
@@ -98,6 +118,8 @@ export const users: userRow[] = [
     checkin: "October 16, 2024, 9:00 PM",
     checkout: "October 28, 2024, 7:00 AM",
     roomNumber: 110,
+    hasCheckIn: true,
+    hasCheckOut: false,
   },
   {
     name: "Bruce Wayne",
@@ -107,6 +129,8 @@ export const users: userRow[] = [
     checkin: "October 17, 2024, 8:00 PM",
     checkout: "October 29, 2024, 8:00 AM",
     roomNumber: 111,
+    hasCheckIn: true,
+    hasCheckOut: false,
   },
   {
     name: "Clark Kent",
@@ -116,5 +140,7 @@ export const users: userRow[] = [
     checkin: "October 16, 2024, 9:00 PM",
     checkout: "October 28, 2024, 7:00 AM",
     roomNumber: 112,
+    hasCheckIn: true,
+    hasCheckOut: false,
   },
 ];
