@@ -6,13 +6,13 @@ from requests.auth import HTTPBasicAuth
 from dotenv import load_dotenv
 from twilio.rest import Client
 
-
 load_dotenv()  # Load environment variables from .env file
 
 # Set OpenAI API Key
 openai.api_key = os.getenv('OPENAI_API_KEY')
 account_sid = os.getenv('TWILIO_ACCOUNT_SID')  # Replace with your Twilio Account SID
 auth_token = os.getenv('TWILIO_AUTH_TOKEN')      # Replace with your Twilio Auth Token
+
 
 client = Client(account_sid, auth_token)
 
