@@ -37,29 +37,28 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## AI Call set up
 
-#This file contains the necessary Python packages that should be installed for the project to run.
+1. This file contains the necessary Python packages that should be installed for the project to run.
 pip install -r requirements.txt
  
-#run main file
+2. run main file
 python app.py
 
-#run grok
+3. run grok
 ngrok config add-authtoken 2nroPjoOKo1Q8OoeInrij6JvtpD_7zg8gmqKCCUpVkRUFQajW
 
 ngrok http --url=apt-centrally-humpback.ngrok-free.app 127.0.0.1:5000
 
-#call 
+4. call 
 +1 731 326 1845
 Press 1 to cancel the trial call message
 Say you want to book a room at Lyf
 
-#postman testing
+5. postman testing
 [POST] https://apt-centrally-humpback.ngrok-free.app/call-handler 
 
 [POST] https://apt-centrally-humpback.ngrok-free.app/process-speech 
 
-under postman “body”
+Under postman “body”
 Key : RecordingSid
 Value : REf527e667c3907721e919d6f6fd8d274b
-
-
+Audio REf527e667c3907721e919d6f6fd8d274b can be found in the recording folder
