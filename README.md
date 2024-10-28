@@ -31,6 +31,8 @@ HackGlobal 🌍 - The Global Hackathon Series 2024
 Dependencies to be installed:
 
 - [Node](https://nodejs.org/en/download) 🟩
+- [Python3.11](https://www.python.org/downloads/)
+- [Ngrok](https://ngrok.com/)
 
 ## Run Web Application Locally 🏃‍♂️
 
