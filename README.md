@@ -6,12 +6,6 @@ HackGlobal 🌍 - The Global Hackathon Series 2024
 
 All-in-One Solution for Receptionist Tasks 🏢
 
-### Assumptions 📌
-
-* Each staff pass is a unique ID 🔑
-* Data is given in .csv files 📄
-* Continuous prompt from user until exit ⏳
-
 ## Tech Stack 💻
 
 - [Next.js](https://nextjs.org/) ⚛️
