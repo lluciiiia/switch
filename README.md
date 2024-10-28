@@ -38,6 +38,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## AI Call set up
 
 1. This file contains the necessary Python packages that should be installed for the project to run.
+
 pip install -r requirements.txt
  
 2. run main file
