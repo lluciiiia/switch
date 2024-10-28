@@ -1,12 +1,13 @@
 # LyfDesk 🚀
 
+All-in-One Solution for Receptionist Tasks 🏢
+
 [Live Deployment](https://main.d2312vzugm71c2.amplifyapp.com/) 🌐
+[Demo Video](https://youtu.be/kZMzEGOXbsk) 🎥
+
+## Project Background 📋
 
 HackGlobal 🌍 - The Global Hackathon Series 2024
-
-## Background 📋
-
-All-in-One Solution for Receptionist Tasks 🏢
 
 ## Tech Stack 💻
 
