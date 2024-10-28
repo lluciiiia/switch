@@ -93,7 +93,7 @@ def handle_recording():
     elif count == 0:
         response.say("I'm sorry to hear you're having an issue. Let me connect you with our customer service team.", voice="Polly.Joanna")
         print(f"Attempting to dial: {phone_number}")
-        response.dial(phone_number, timeout=30)       
+        response.dial(phone_number, timeout=30)
     else:
         response.say("Thank you for your message. Let me respond to that.", voice="Polly.Joanna")
         response.say("Is there anything specific you'd like to know about our services?", voice="Polly.Joanna")
