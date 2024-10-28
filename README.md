@@ -1,6 +1,12 @@
 # LyfDesk 🚀
 
-All-in-One Solution for Receptionists 🏢
+**All-in-One Solution for Receptionists 🏢**
+
+- An AI-powered, omnichannel platform that simplifies hospitality tasks by centralizing customer inquiries from multiple sources—email, phone, Instagram, and Telegram—into one hub. 
+
+- It **reduces the time receptionists spend searching for information and juggling between 10+ platforms** by automating inquiry routing, providing instant, multilingual replies, supporting QR-based check-in/out, and enabling smooth task handovers between teams. 
+
+- LyfDesk analyzes common customer issues, giving helpful insights to improve service quality and efficiency, allowing teams to respond faster, reduce errors, enhance guest satisfaction, and **focus on the quality of the services**.
 
 - [Live Deployment](https://main.d2312vzugm71c2.amplifyapp.com/) 🌐
 - [Demo Video](https://youtu.be/kZMzEGOXbsk) 🎥
