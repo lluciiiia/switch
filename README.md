@@ -9,7 +9,7 @@
 - LyfDesk analyzes common customer issues, giving helpful insights to improve service quality and efficiency, allowing teams to respond faster, reduce errors, enhance guest satisfaction, and **focus on the quality of the services**.
 
 - [Live Deployment](https://main.d2312vzugm71c2.amplifyapp.com/) 🌐
-- [Demo Video](https://youtu.be/kZMzEGOXbsk) 🎥
+- [Demo Video](https://youtu.be/6WwPy9T_YHo) 🎥
 
 ## Project Background 📋
 
@@ -30,6 +30,7 @@ HackGlobal 🌍 - The Global Hackathon Series 2024
 
 Dependencies to be installed:
 * [Node](https://nodejs.org/en/download) 🟩
+* [Python](https://www.python.org/downloads/)🟩
 
 ## Run Web Application Locally 🏃‍♂️
 
