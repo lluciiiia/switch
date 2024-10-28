@@ -35,7 +35,7 @@ const InquiryCard = ({ inquiry }: { inquiry: Inquiry }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedRecommendation, setSelectedRecommendation] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  
   const handleModalToggle = () => {
     setIsModalOpen((prev) => !prev); // Toggles the modal state
   };
@@ -317,18 +317,14 @@ const InquiryCard = ({ inquiry }: { inquiry: Inquiry }) => {
                       key={recommendation.id}
                       className={`flex items-start py-4 ${index > 0 ? 'border-t border-gray-300' : ''}`}
                     >
-                      {recommendation.translatedText ? (
-                        <div className="flex-1 grid grid-cols-2 gap-4">
-                          <p className="text-gray-700 text-sm break-words">{recommendation.text}</p>
+                      <div className={`flex-1 ${recommendation.translatedText ? 'grid grid-cols-2 gap-4' : ''}`}>
+                        <p className="text-gray-700 text-sm break-words">{recommendation.text}</p>
+                        {recommendation.translatedText && (
                           <p className="text-gray-700 text-sm break-words">{recommendation.translatedText}</p>
-                        </div>
-                      ) : (
-                        <div className="flex-1">
-                          <p className="text-gray-700 text-sm break-words">{recommendation.text}</p>
-                        </div>
-                      )}
+                        )}
+                      </div>
                       <button
-                        onClick={() => handleQuickReply(recommendation.translatedText ?? recommendation.text)}
+                        onClick={() => handleQuickReply(recommendation.translatedText || recommendation.text)}
                         className="text-orange-500 text-lg ml-4"
                       >
                         +
@@ -336,6 +332,7 @@ const InquiryCard = ({ inquiry }: { inquiry: Inquiry }) => {
                     </div>
                   ))}
                 </div>
+
               </div>
 
               {/* References - Taking up 2/5 of the space */}
