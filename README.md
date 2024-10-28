@@ -1,5 +1,7 @@
 # LyfDesk 🚀
 
+[Live Deployment](https://main.d2312vzugm71c2.amplifyapp.com/) 🌐
+
 HackGlobal 🌍 - The Global Hackathon Series 2024
 
 ## Background 📋
