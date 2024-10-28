@@ -45,6 +45,7 @@ pip install -r requirements.txt
 python app.py
 
 3. run grok
+
 ngrok config add-authtoken 2nroPjoOKo1Q8OoeInrij6JvtpD_7zg8gmqKCCUpVkRUFQajW
 
 ngrok http --url=apt-centrally-humpback.ngrok-free.app 127.0.0.1:5000
