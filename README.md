@@ -92,3 +92,12 @@ Dependencies to be installed:
    - Value: `REf527e667c3907721e919d6f6fd8d274b`
    
    🎙️ The audio `REf527e667c3907721e919d6f6fd8d274b` can be found in the recording folder.
+
+6. Team 👥
+
+- [Seokyung Kim](https://github.com/lluciiiia) 🌟
+- [Lim Wei Jie](https://github.com/Stabbershade) 🔥
+- [Nguyen Binh](https://github.com/nguyentobinh12x5) 🚀
+- [Candy Tam](https://github.com/CANDYTAM) 🌈
+
+
