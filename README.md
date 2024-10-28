@@ -1,6 +1,6 @@
 # LyfDesk 🚀
 
-All-in-One Solution for Receptionist Tasks 🏢
+All-in-One Solution for Receptionists 🏢
 
 - [Live Deployment](https://main.d2312vzugm71c2.amplifyapp.com/) 🌐
 - [Demo Video](https://youtu.be/kZMzEGOXbsk) 🎥
