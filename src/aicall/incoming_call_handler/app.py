@@ -3,8 +3,6 @@ from flask_cors import CORS
 from twilio.twiml.voice_response import VoiceResponse
 import openai_helper
 import twilio_helper
-import asyncio
-import realtime_helper
 from dotenv import load_dotenv
 import os
 
