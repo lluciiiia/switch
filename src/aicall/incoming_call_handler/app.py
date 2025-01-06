@@ -4,7 +4,6 @@ from twilio.twiml.voice_response import VoiceResponse
 import openai_helper
 import twilio_helper
 import asyncio
-import realtime_helper
 from dotenv import load_dotenv
 import os
 
@@ -30,7 +29,7 @@ def handle_call():
     response = VoiceResponse()
     response.say("Hello, you are connected to Life's AI assistant. How can I assist you today?", voice="Polly.Joanna")
     response.pause(length=5, play_beep=True) # Hi, I would like to book a room
-    response.say("Hello! That's fantastic news! We're thrilled to host you. To make a reservation, please visit our official website or use the Discover ASR app for the most streamlined experience. If you have any questions or special requests, feel free to ask. We're here to assist you 24/7!", voice="Polly.Joanna")
+    response.say("That's fantastic news! To book, just head to our website or the Discover ASR app for the easiest experience. Got questions or special requests? We're here 24/7!", voice="Polly.Joanna")
     response.record(timeout=5, action='/handle-recording', play_beep=False, transcribe=True) # This is where Twilio will send the recording results
     # Set timeout to 5 seconds for silence
     # response.record(action="/process-speech", timeout=5, transcribe=True)
